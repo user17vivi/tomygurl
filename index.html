@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday Vashnavi ♡</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(
+                135deg,
+                #fffafb,
+                #fff3f6,
+                #fdf7fb
+            );
+            color: #514047;
+            overflow: hidden;
+        }
+
+        /* ================= PAGES ================= */
+
+        .page {
+            position: absolute;
+            inset: 0;
+
+            min-height: 100vh;
+            width: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+
+            transition: 0.9s ease;
+        }
+
+        /* PAGE 1 */
+
+        #page1 {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        #page1.hide {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+
+        /* PAGE 2 */
+
+        #page2 {
+            opacity: 0;
+            transform: translateX(100%);
+            pointer-events: none;
+        }
+
+        #page2.show {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: all;
+        }
+
+        #page2.hide {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+
+        /* PAGE 3 */
+
+        #page3 {
+            opacity: 0;
+            transform: translateX(100%);
+            pointer-events: none;
+        }
+
+        #page3.show {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: all;
+        }
+
+
+        /* ================= SMALL CRESCENT MOON ================= */
+
+        .moon {
+            position: fixed;
+            top: 18px;
+            left: 18px;
+
+            width: 40px;
+            height: 40px;
+
+            background: #d789a0;
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 15px rgba(215, 137, 160, 0.25);
+
+            z-index: 50;
+        }
+
+        .moon::after {
+            content: "";
+
+            position: absolute;
+
+            width: 40px;
+            height: 40px;
+
+            top: -7px;
+            left: 11px;
+
+            background: #fff4f7;
+            border-radius: 50%;
+        }
+
+
+        /* ================= CARDS ================= */
+
+        .card,
+        .final-card {
+            width: 100%;
+            max-width: 430px;
+
+            padding: 38px 27px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.74);
+
+            backdrop-filter: blur(12px);
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 15px 45px rgba(190, 120, 140, 0.13);
+
+            animation: cardAppear 1s ease;
+        }
+
+
+        /* ================= PAGE 1 ================= */
+
+        .heart {
+            font-size: 29px;
+            color: #d27d96;
+
+            margin-bottom: 12px;
+
+            animation: heartbeat 2s infinite;
+        }
+
+        .page-title {
+            font-size: 29px;
+            color: #c36d87;
+
+            margin-bottom: 22px;
+        }
+
+        .message {
+            font-size: 17px;
+            line-height: 1.8;
+
+            color: #5c4a52;
+        }
+
+        .message p {
+            margin-bottom: 17px;
+        }
+
+        .highlight {
+            color: #bd6881;
+            font-weight: 600;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .button {
+            margin-top: 18px;
+
+            padding: 14px 30px;
+
+            border: none;
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d9829b,
+                    #c493bb
+                );
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px rgba(200, 120, 150, 0.22);
+
+            transition: 0.3s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px) scale(1.03);
+        }
+
+        .button:active {
+            transform: scale(0.95);
+        }
+
+
+        /* ================= PAGE 2 ================= */
+
+        .birthday-card {
+            width: 100%;
+            max-width: 450px;
+
+            text-align: center;
+
+            animation: cardAppear 1s ease;
+        }
+
+        .sparkles {
+            font-size: 21px;
+            letter-spacing: 8px;
+
+            color: #d27d96;
+
+            margin-bottom: 10px;
+        }
+
+        .birthday-title {
+            font-size: 32px;
+
+            color: #bd6682;
+
+            margin-bottom: 10px;
+        }
+
+        .name {
+            font-size: 29px;
+            font-weight: 700;
+
+            color: #725365;
+
+            margin-bottom: 5px;
+        }
+
+        .dob {
+            font-size: 15px;
+            color: #8b737d;
+
+            margin-bottom: 14px;
+        }
+
+
+        /* ================= PHOTO ================= */
+
+        .photo-frame {
+            width: 175px;
+            height: 225px;
+
+            margin: 15px auto 5px;
+
+            padding: 5px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 10px 30px rgba(150, 90, 110, 0.18);
+
+            overflow: hidden;
+
+            animation: photoAppear 1.2s ease;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 14px;
+
+            display: block;
+        }
+
+
+        /* ================= CAKE ================= */
+
+        .cake {
+            position: relative;
+
+            width: 210px;
+            height: 90px;
+
+            margin: 62px auto 32px;
+
+            background:
+                linear-gradient(
+                    #f3a7ba,
+                    #e895ae
+                );
+
+            border-radius:
+                12px 12px 22px 22px;
+
+            box-shadow:
+                0 12px 25px rgba(180, 100, 130, 0.14);
+
+            animation: cakeAppear 1s ease;
+        }
+
+        .cake::before {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 28px;
+
+            top: -14px;
+            left: -10px;
+
+            background: #fff2f5;
+
+            border-radius: 50%;
+
+            box-shadow:
+                inset 0 -5px #efb2c1;
+        }
+
+        .cake::after {
+            content: "♡  ♡  ♡";
+
+            position: absolute;
+
+            bottom: 15px;
+            left: 0;
+            right: 0;
+
+            color: white;
+            font-size: 18px;
+        }
+
+
+        /* ================= CANDLES ================= */
+
+        .candle {
+            position: absolute;
+
+            width: 13px;
+            height: 48px;
+
+            top: -58px;
+
+            background:
+                repeating-linear-gradient(
+                    45deg,
+                    #d9859d,
+                    #d9859d 5px,
+                    white 5px,
+                    white 10px
+                );
+
+            border-radius: 4px;
+        }
+
+        .candle:nth-child(1) {
+            left: 50px;
+        }
+
+        .candle:nth-child(2) {
+            left: 98px;
+        }
+
+        .candle:nth-child(3) {
+            left: 146px;
+        }
+
+        .flame {
+            position: absolute;
+
+            width: 15px;
+            height: 22px;
+
+            top: -27px;
+            left: -1px;
+
+            background: #ffc85c;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 13px #ffd76b;
+
+            animation:
+                flame 0.8s infinite alternate;
+        }
+
+
+        /* ================= PAGE 3 ================= */
+
+        .final-card {
+            padding: 45px 27px;
+        }
+
+        .final-title {
+            font-size: 28px;
+
+            color: #c36d87;
+
+            margin-bottom: 27px;
+        }
+
+        .final-message {
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-style: italic;
+
+            font-size: 19px;
+
+            line-height: 1.9;
+
+            color: #5d4a52;
+        }
+
+        .final-heart {
+            font-size: 30px;
+
+            color: #d27b95;
+
+            margin-top: 25px;
+
+            animation: heartbeat 2s infinite;
+        }
+
+
+        /* ================= CONFETTI ================= */
+
+        .confetti {
+            position: fixed;
+
+            top: -20px;
+
+            width: 8px;
+            height: 13px;
+
+            z-index: 100;
+
+            pointer-events: none;
+
+            animation:
+                confettiFall 2.8s linear forwards;
+        }
+
+        @keyframes confettiFall {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translateY(110vh)
+                    rotate(720deg);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* ================= ANIMATIONS ================= */
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(30px)
+                    scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+        @keyframes photoAppear {
+
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes heartbeat {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        @keyframes cakeAppear {
+
+            from {
+                opacity: 0;
+                transform:
+                    scale(0.6)
+                    translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    scale(1)
+                    translateY(0);
+            }
+        }
+
+        @keyframes flame {
+
+            from {
+                transform:
+                    scale(1)
+                    rotate(-3deg);
+            }
+
+            to {
+                transform:
+                    scale(1.15)
+                    rotate(3deg);
+            }
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 480px) {
+
+            .page {
+                padding: 18px;
+            }
+
+            .card,
+            .final-card {
+                padding: 32px 21px;
+            }
+
+            .page-title {
+                font-size: 26px;
+            }
+
+            .message {
+                font-size: 16px;
+                line-height: 1.75;
+            }
+
+            .birthday-title {
+                font-size: 28px;
+            }
+
+            .name {
+                font-size: 25px;
+            }
+
+            .photo-frame {
+                width: 155px;
+                height: 200px;
+            }
+
+            .cake {
+                transform: scale(0.9);
+            }
+
+            .moon {
+                top: 14px;
+                left: 14px;
+                transform: scale(0.82);
+            }
+
+            .final-message {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Small Crescent Moon -->
+    <div class="moon"></div>
+
+
+    <!-- ================================================= -->
+    <!-- PAGE 1 -->
+    <!-- ================================================= -->
+
+    <section class="page" id="page1">
+
+        <div class="card">
+
+            <div class="heart">♡</div>
+
+            <h1 class="page-title">
+                A Little Birthday Reminder
+            </h1>
+
+            <div class="message">
+
+                <p>
+                    Your presence has a
+                    <span class="highlight">
+                        special place in my heart.
+                    </span>
+                </p>
+
+                <p>
+                    You're 18 now, but still as
+                    <span class="highlight">
+                        lovely and cute
+                    </span>
+                    as you were on the day you were born.
+                </p>
+
+                <p>
+                    You are the reason behind so many smiles,
+                    <span class="highlight">
+                        especially mine.
+                    </span>
+                </p>
+
+                <p>
+                    I've created so many beautiful memories
+                    with you, and I will create many more
+                    in the days to come.
+                </p>
+
+            </div>
+
+            <button
+                class="button"
+                onclick="goToPage2()">
+
+                Press Here ♡
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- PAGE 2 -->
+    <!-- ================================================= -->
+
+    <section class="page" id="page2">
+
+        <div class="birthday-card">
+
+            <div class="sparkles">
+                ✦ ✧ ✦
+            </div>
+
+            <h1 class="birthday-title">
+                Happiest Birthday Ever!
+            </h1>
+
+            <div class="name">
+                Vashnavi ♡
+            </div>
+
+            <div class="dob">
+                Born on 6 October 2008
+            </div>
+
+
+            <!-- HER PHOTO — ONLY ON PAGE 2 -->
+
+            <div class="photo-frame">
+                <img
+                    src="vashnavi.jpg"
+                    alt="Vashnavi">
+            </div>
+
+
+            <!-- CAKE -->
+
+            <div class="cake">
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+            </div>
+
+
+            <div class="sparkles">
+                ♡ ✦ ♡
+            </div>
+
+
+            <!-- THIRD PAGE BUTTON -->
+
+            <button
+                class="button"
+                onclick="goToPage3()">
+
+                Next Page ♡
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- PAGE 3 -->
+    <!-- ================================================= -->
+
+    <section class="page" id="page3">
+
+        <div class="final-card">
+
+            <div class="heart">
+                ♡
+            </div>
+
+            <h1 class="final-title">
+                One Last Thing...
+            </h1>
+
+            <div class="final-message">
+
+                I'm sorry for my mistakes, Vashu.
+
+                <br><br>
+
+                Right now, I'm dealing with some issues
+                that I don't want to let you into.
+
+                <br><br>
+
+                But I love you, my girl,
+                and I always will.
+
+                <br><br>
+
+                <span>
+                    Ti amerò per sempre.
+                </span>
+
+            </div>
+
+            <div class="final-heart">
+                ♡
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================================= -->
+
+    <script>
+
+        /* PAGE 1 → PAGE 2 */
+
+        function goToPage2() {
+
+            createConfetti();
+
+            const page1 =
+                document.getElementById("page1");
+
+            const page2 =
+                document.getElementById("page2");
+
+            page1.classList.add("hide");
+
+            setTimeout(() => {
+
+                page2.classList.add("show");
+
+            }, 250);
+        }
+
+
+        /* PAGE 2 → PAGE 3 */
+
+        function goToPage3() {
+
+            const page2 =
+                document.getElementById("page2");
+
+            const page3 =
+                document.getElementById("page3");
+
+            page2.classList.add("hide");
+
+            setTimeout(() => {
+
+                page3.classList.add("show");
+
+            }, 250);
+        }
+
+
+        /* CONFETTI */
+
+        function createConfetti() {
+
+            const colors = [
+                "#e88da8",
+                "#d9a0c2",
+                "#f2c4d2",
+                "#c9a5d8",
+                "#f5d38a",
+                "#e7a6b8"
+            ];
+
+            for (let i = 0; i < 120; i++) {
+
+                const confetti =
+                    document.createElement("div");
+
+                confetti.classList.add("confetti");
+
+                confetti.style.left =
+                    Math.random() * 100 + "vw";
+
+                const size =
+                    Math.random() * 6 + 6;
+
+                confetti.style.width =
+                    size + "px";
+
+                confetti.style.height =
+                    size * 1.5 + "px";
+
+                confetti.style.background =
+                    colors[
+                        Math.floor(
+                            Math.random() *
+                            colors.length
+                        )
+                    ];
+
+                confetti.style.animationDelay =
+                    Math.random() * 0.8 + "s";
+
+                if (Math.random() > 0.7) {
+                    confetti.style.borderRadius =
+                        "50%";
+                }
+
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 4000);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
